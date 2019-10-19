@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     float speed = 50.0f;
+    GameObject go;
     Vector3 lookAt;
 
     // Use this for initialization
@@ -14,29 +15,40 @@ public class CameraScript : MonoBehaviour
         transform.LookAt(lookAt);
     }
 
-    void center(Vector3 v)
-    {
-        lookAt.Set(v.x,v.y,v.z);
-        transform.LookAt(lookAt);
-    }
-
-    void center(float x,float y, float z)
-    {
-        lookAt.Set(x, y, z);
-        transform.LookAt(lookAt);
-    }
-
     void Update()
     {
-        float mX = Input.GetAxis("Mouse X");
-        float mY = Input.GetAxis("Mouse Y");
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, 10000.0f))
+            {
+                if (hit.transform != null)
+                {
+                    go = hit.transform.gameObject;
+                    lookAt = hit.transform.gameObject.transform.position;
+                    transform.LookAt(lookAt);
+                }
+            }
+        }
+
+        transform.position += go.transform.position - lookAt;
+        lookAt = go.transform.position;
+
+        if (Input.GetMouseButton(1))
+        {
+
+            float mX = Input.GetAxis("Mouse X");
+            float mY = Input.GetAxis("Mouse Y");
+
+            transform.position += speed * Time.deltaTime * mX * (Vector3.Cross(transform.up, transform.forward).normalized)*Vector3.Magnitude(transform.position-lookAt)/100;
+            transform.position += transform.up * speed * Time.deltaTime * mY;
+            transform.LookAt(lookAt);
+        }
+
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-
-        transform.position += speed * Time.deltaTime * mX * (Vector3.Cross(transform.up, transform.forward).normalized);
-        transform.position += transform.up * speed * Time.deltaTime * mY;
-        transform.LookAt(lookAt);
-
-        transform.position += scroll * Time.deltaTime * speed * transform.forward;
+        transform.position += scroll * Time.deltaTime * speed * 300 * transform.forward;
     }
 
 }
