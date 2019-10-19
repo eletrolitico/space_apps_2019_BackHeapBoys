@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     float speed = 50.0f;
-    GameObject go;
+    public GameObject go;
     Vector3 lookAt;
 
     // Use this for initialization
