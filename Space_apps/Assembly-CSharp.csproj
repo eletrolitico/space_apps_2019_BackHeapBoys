@@ -55,10 +55,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\BackButtonProgram.cs" />
+     <Compile Include="Assets\BackScript.cs" />
+     <Compile Include="Assets\CreateBallsScript.cs" />
+     <Compile Include="Assets\CreateObjPlanetScript.cs" />
+     <Compile Include="Assets\Scripts\BehaviourScript.cs" />
      <Compile Include="Assets\Scripts\CameraScript.cs" />
      <Compile Include="Assets\Scripts\ChangeSize.cs" />
+     <Compile Include="Assets\Scripts\CreateObjScript.cs" />
+     <Compile Include="Assets\Scripts\Ellipse.cs" />
+     <Compile Include="Assets\Scripts\EllipseRenderer.cs" />
      <Compile Include="Assets\Scripts\HeavenlyBody.cs" />
      <Compile Include="Assets\Scripts\MenuButton.cs" />
+     <Compile Include="Assets\Scripts\MenuScript.cs" />
+     <Compile Include="Assets\Scripts\OrbitMotion.cs" />
+     <Compile Include="Assets\Scripts\PanelScript.cs" />
      <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
      <None Include="Assets\Shaders\StarNestSkyboxMask.shader" />
  <Reference Include="Unity.Timeline.Editor">

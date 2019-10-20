@@ -6,7 +6,8 @@ public class MenuButton : MonoBehaviour
 {
     public GameObject menu;
     private Animation anim;
-    bool act = false;
+   
+    public bool act = false;
 
     void OnEnable()
     {
